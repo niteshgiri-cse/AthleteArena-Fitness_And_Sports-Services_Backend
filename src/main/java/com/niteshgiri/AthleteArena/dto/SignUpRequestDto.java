@@ -1,6 +1,5 @@
 package com.niteshgiri.AthleteArena.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -12,12 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignUpRequestDto {
-    @Column(unique = true,nullable = false)
-    private String username;
+
+    @NotBlank(message = "Name is required")
+    private String name;
+
     @Email
     @NotBlank(message = "Email is required")
-    @Column(unique = true, nullable = false)
     private String email;
-    @Size(min = 8, max = 16, message = "Password should be length 8 to 16 character ")
+
+    @Size(min = 8, message = "Password should be at least 8 characters")
     private String password;
 }
